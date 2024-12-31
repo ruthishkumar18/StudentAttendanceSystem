@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System</title>
+    <style>
+        #attendanceRecord {
+            margin-top: 20px;
+        }
+        .record {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Attendance System</h1>
+    </header>
+    <main>
+        <section id="attendance">
+            <form id="attendanceForm">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" required>
+                
+                <label for="rollNumber">Roll Number:</label>
+                <input type="text" id="rollNumber" required>
+                
+                <label for="attendanceStatus">Attendance Status:</label>
+                <select id="attendanceStatus">
+                    <option value="present">Present</option>
+                    <option value="absent">Absent</option>
+                </select>
+                
+                <button type="submit">Mark Attendance</button>
+            </form>
+        </section>
+
+        <section id="attendanceRecord">
+            <h2>Attendance Records:</h2>
+            <div id="records"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Student Attendance System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from refreshing the page
+
+            // Get the student name, roll number, and attendance status values
+            const studentName = document.getElementById('studentName').value;
+            const rollNumber = document.getElementById('rollNumber').value;
+            const attendanceStatus = document.getElementById('attendanceStatus').value;
+
+            // Create a new record element
+            const recordDiv = document.createElement('div');
+            recordDiv.classList.add('record');
+            recordDiv.textContent = `Roll No: ${rollNumber}, ${studentName} is marked as ${attendanceStatus}.`;
+
+            // Append the new record to the records section
+            document.getElementById('records').appendChild(recordDiv);
+
+            // Clear the form inputs
+            document.getElementById('studentName').value = '';
+            document.getElementById('rollNumber').value = '';
+            document.getElementById('attendanceStatus').value = 'present';
+        });
+    </script>
+</body>
+</html>
